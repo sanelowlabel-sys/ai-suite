@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Suite | 54 AI Tools & Studio Platform</title>
+    <meta name="description" content="Production-grade multi-tool AI platform hosting 54 creative, audio, video, marketing, document, and web utility tools." />
+    <meta property="og:title" content="AI Suite | 54 AI Tools & Studio Platform" />
+    <meta property="og:description" content="Production-grade multi-tool AI platform hosting 54 creative, audio, video, marketing, document, and web utility tools." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Exo:wght@400;500;600;700&family=Hammersmith+One&display=swap" rel="stylesheet">
+    <script>
+      // Defensive window.fetch getter/setter initialization to prevent "Cannot set property fetch of #<Window> which has only a getter"
+      (function() {
+        try {
+          var desc = Object.getOwnPropertyDescriptor(window, 'fetch');
+          if (!desc || !desc.set) {
+            var currentFetch = window.fetch ? window.fetch.bind(window) : (typeof fetch !== 'undefined' ? fetch : null);
+            Object.defineProperty(window, 'fetch', {
+              get: function() {
+                return currentFetch;
+              },
+              set: function(val) {
+                currentFetch = val;
+              },
+              configurable: true,
+              enumerable: true
+            });
+          }
+        } catch (e) {
+          // Ignore if environment forbids redefinition
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-[#1a1a1a] text-white selection:bg-[#BE1E2F] selection:text-white antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

@@ -1,0 +1,7 @@
+{
+  "name": "AI Suite",
+  "description": "Production-grade multi-tool AI platform hosting 54 creative, audio, video, marketing, document, and web utility tools with real-time execution and Pro access.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
