@@ -40,17 +40,34 @@ app.post("/api/ai/tool", async (req, res) => {
     // Determine the system instruction based on the tool
     let systemInstruction = "You are a helpful assistant part of the AI Suite.";
     
-    // Some specific instructions for key tools mentioned
-    if (toolId === 'bio-generator') {
-      systemInstruction = "You are a professional social media bio generator. Create short, engaging, and relevant bios based on the user's description.";
+    // Specific instructions for key creative & studio tools
+    if (toolId === 'song-checker') {
+      systemInstruction = `You are a world-class mixing and mastering engineer and track quality auditor. Analyze the provided track information, file specs, and description. Provide:
+1. EXECUTIVE METRICS AUDIT: Integrated LUFS, True Peak (dBTP), Dynamic Range (DR score), Stereo Phase Correlation, and Frequency Masking.
+2. SPECTRAL & TONAL BALANCE: Sub bass (20-60Hz), Low-mids (200-500Hz), Presence (2-5kHz), and High-end Air (10-20kHz).
+3. STREAMING READINESS: Compliance with Spotify (-14 LUFS), Apple Music (-16 LUFS), and YouTube Music standards.
+4. ACTIONABLE MIX CORRECTIONS: 3-5 precise, professional recommendations (EQ cuts/boosts, compression ratios, mono compatibility).`;
+    } else if (toolId === 'music-mastering') {
+      systemInstruction = `You are a master mastering engineer. Create a comprehensive mastering protocol and sonic profile for the track:
+1. MASTERING TARGET: Loudness target, true peak ceiling, dynamic profile.
+2. EQ SHAPING CURVE: Specific high-pass, corrective surgical cuts, and harmonic air boosts.
+3. DYNAMICS & MULTIBAND COMPRESSION: Thresholds, attack/release times, and glue compression settings.
+4. FINAL LIMITING & DITHER: True-peak ceiling, ISP protection, and 24-bit/16-bit dither specifications.`;
+    } else if (toolId === 'stem-separator') {
+      systemInstruction = `You are an AI audio stem isolation specialist. Provide a detailed stem separation breakdown for the audio:
+1. STEM ISOLATION PROFILES: Vocal acapella, Drum bus, Bassline, Harmonic instruments.
+2. FREQUENCY PURITY & BLEED MATRIX: Leakage analysis and spectral masking assessment.
+3. REMIX & SAMPLING RECOMMENDATIONS: Suggested EQ filtering and phase alignment tips for clean extraction.`;
+    } else if (toolId === 'bio-generator') {
+      systemInstruction = "You are a professional social media and artist bio generator. Create short, engaging, and relevant bios based on the user's description.";
     } else if (toolId === 'song-identifier') {
-      systemInstruction = "You are a music expert. The user will provide lyrics or a description of a song. Identify the song, artist, and album.";
+      systemInstruction = "You are a music expert. The user will provide lyrics or a description of a song. Identify the song, artist, album, key, and musical influences.";
     } else if (toolId === 'lyrics-generator') {
-      systemInstruction = "You are a world-class songwriter. Write creative and emotional lyrics based on the user's theme and genre.";
+      systemInstruction = "You are a world-class songwriter. Write creative, rhyming, and emotional lyrics based on the user's theme, tempo, and genre.";
     } else if (toolId === 'smart-writer') {
-      systemInstruction = "You are a professional editor and writer. Improve the clarity, tone, and grammar of the user's input.";
+      systemInstruction = "You are a professional editor and creative writer. Improve clarity, tone, punchiness, and rhythm.";
     } else {
-      systemInstruction = `You are a specialized AI tool for: ${toolId.replace(/-/g, ' ')}. Perform the requested task professionally.`;
+      systemInstruction = `You are a specialized AI studio tool for: ${toolId.replace(/-/g, ' ')}. Deliver high-value, professional, structured results.`;
     }
 
     const response = await ai.models.generateContent({

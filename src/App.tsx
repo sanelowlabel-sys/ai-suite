@@ -1,15 +1,14 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Navigation from './components/Navigation';
 import AuthModal from './components/AuthModal';
 
-// Lazy load pages for performance
-const Home = React.lazy(() => import('./pages/Home'));
-const Tools = React.lazy(() => import('./pages/Tools'));
-const ToolDetail = React.lazy(() => import('./pages/ToolDetail'));
-const Pricing = React.lazy(() => import('./pages/Pricing'));
-const Dashboard = React.lazy(() => import('./pages/Dashboard'));
+import Home from './pages/Home';
+import Tools from './pages/Tools';
+import ToolDetail from './pages/ToolDetail';
+import Pricing from './pages/Pricing';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -20,19 +19,13 @@ function App() {
           <AuthModal />
           
           <main className="lg:ml-72 pt-16 flex-1 min-h-[calc(100vh-64px)]">
-            <Suspense fallback={
-              <div className="flex items-center justify-center h-[calc(100vh-64px)]">
-                <div className="w-8 h-8 border-3 border-red-600 border-t-transparent rounded-full animate-spin"></div>
-              </div>
-            }>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/tools" element={<Tools />} />
-                <Route path="/tools/:id" element={<ToolDetail />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-              </Routes>
-            </Suspense>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/tools" element={<Tools />} />
+              <Route path="/tools/:id" element={<ToolDetail />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
           </main>
           
           <footer className="lg:ml-72 border-t border-slate-200 bg-white py-12 px-6">
