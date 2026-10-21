@@ -1,0 +1,45 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the AI Suite platform",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "subscriptionTier": { "type": "string", "enum": ["free", "pro", "premium"] },
+        "usageCount": { "type": "integer" },
+        "lastUsageReset": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "subscriptionTier", "usageCount"]
+    },
+    "Execution": {
+      "title": "Execution",
+      "description": "Real-time AI tool generation run history",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "toolId": { "type": "string" },
+        "toolName": { "type": "string" },
+        "category": { "type": "string" },
+        "input": { "type": "string" },
+        "result": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "toolId", "toolName", "input", "result"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and real-time usage state"
+    },
+    "users/{userId}/executions/{executionId}": {
+      "schema": "Execution",
+      "description": "Real-time AI tool outputs and execution log"
+    }
+  }
+}
